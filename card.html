@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2c2b3e">
+    <title>Digital Business Card</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+</head>
+<body>
+    <div class="card-container dark-theme">
+        <div class="business-card">
+            <div class="card-header">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 10 L20 20 L10 30" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 10 L30 20 L20 30" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="company-name" class="company-logo-text">1base</span>
+                </div>
+            </div>
+            
+            <div class="card-content">
+                <h2 id="company-description">An all-in-one platform for CRM, automation, finance, and IT support.</h2>
+                
+                <div class="contact-details">
+                    <div class="contact-section">
+                        <label>WEBSITE</label>
+                        <a href="#" id="website-link" target="_blank" class="contact-value">1base.io</a>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <label>EMAIL</label>
+                        <a href="#" id="email-link" class="contact-value">connect@1base.io</a>
+                    </div>
+                </div>
+                
+                <div class="qr-section">
+                    <div id="qr-code" class="qr-code-container"></div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <button id="share-btn" class="action-btn">Share Card</button>
+                <button id="save-contact-btn" class="action-btn primary">Save Contact</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="scripts/card.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed: ', err));
+            });
+        }
+    </script>
+</body>
+</html>
