@@ -16,41 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const data = JSON.parse(cardData);
     displayCard(data);
     generateQRCode(data);
-    
-    document.getElementById('share-btn').addEventListener('click', () => shareCard(data));
-    document.getElementById('save-contact-btn').addEventListener('click', () => saveContact(data));
 });
 
 function displayCard(data) {
-    document.getElementById('company-name').textContent = data.company;
-    document.getElementById('company-description').textContent = `Contact ${data.name} at ${data.company}`;
-    
-    // Display name
-    document.getElementById('name-display').textContent = data.name;
-    
-    // Display and link phone
-    const phoneLink = document.getElementById('phone-link');
-    phoneLink.href = `tel:${data.phone}`;
-    phoneLink.textContent = data.phone;
-    
     // Display and link email
     const emailLink = document.getElementById('email-link');
     emailLink.href = `mailto:${data.email}`;
     emailLink.textContent = data.email;
-    
-    // Display and link website
-    const websiteLink = document.getElementById('website-link');
-    if (data.website) {
-        let website = data.website;
-        if (!website.startsWith('http://') && !website.startsWith('https://')) {
-            website = 'https://' + website;
-        }
-        websiteLink.href = website;
-        websiteLink.textContent = data.website.replace(/^https?:\/\//, '');
-    } else {
-        // Hide website section if no website provided
-        websiteLink.parentElement.style.display = 'none';
-    }
 }
 
 function generateQRCode(data) {
@@ -83,13 +55,10 @@ VERSION:3.0
 FN:${data.name}
 ORG:${data.company}
 TEL;TYPE=WORK,VOICE:${data.phone}
-EMAIL;TYPE=WORK:${data.email}`;
+EMAIL;TYPE=WORK:${data.email}
+URL:https://1base.io
+END:VCARD`;
     
-    if (data.website) {
-        vCard += `\nURL:${data.website}`;
-    }
-    
-    vCard += '\nEND:VCARD';
     return vCard;
 }
 
