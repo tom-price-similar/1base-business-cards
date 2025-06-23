@@ -7,7 +7,6 @@
     <title>Digital Business Card</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
 </head>
 <body>
     <div class="card-container dark-theme">
@@ -49,12 +48,12 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="scripts/libs/qrcode.min.js"></script>
     <script src="scripts/card.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('service-worker.js')
                     .then(reg => console.log('Service Worker registered'))
                     .catch(err => console.log('Service Worker registration failed: ', err));
             });
