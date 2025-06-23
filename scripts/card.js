@@ -25,6 +25,20 @@ function displayCard(data) {
     document.getElementById('company-name').textContent = data.company;
     document.getElementById('company-description').textContent = `Contact ${data.name} at ${data.company}`;
     
+    // Display name
+    document.getElementById('name-display').textContent = data.name;
+    
+    // Display and link phone
+    const phoneLink = document.getElementById('phone-link');
+    phoneLink.href = `tel:${data.phone}`;
+    phoneLink.textContent = data.phone;
+    
+    // Display and link email
+    const emailLink = document.getElementById('email-link');
+    emailLink.href = `mailto:${data.email}`;
+    emailLink.textContent = data.email;
+    
+    // Display and link website
     const websiteLink = document.getElementById('website-link');
     if (data.website) {
         let website = data.website;
@@ -33,30 +47,27 @@ function displayCard(data) {
         }
         websiteLink.href = website;
         websiteLink.textContent = data.website.replace(/^https?:\/\//, '');
+    } else {
+        // Hide website section if no website provided
+        websiteLink.parentElement.style.display = 'none';
     }
-    
-    const emailLink = document.getElementById('email-link');
-    emailLink.href = `mailto:${data.email}`;
-    emailLink.textContent = data.email;
 }
 
 function generateQRCode(data) {
     const vCardData = generateVCard(data);
     const qrContainer = document.getElementById('qr-code');
     
-    QRCode.toCanvas(document.createElement('canvas'), vCardData, {
+    // Clear any existing QR code
+    qrContainer.innerHTML = '';
+    
+    // Create QR code using qrcode.js library
+    new QRCode(qrContainer, {
+        text: vCardData,
         width: 200,
-        margin: 2,
-        color: {
-            dark: '#2c2b3e',
-            light: '#ffffff'
-        }
-    }, function (error, canvas) {
-        if (error) {
-            console.error(error);
-            return;
-        }
-        qrContainer.appendChild(canvas);
+        height: 200,
+        colorDark: '#2c2b3e',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
     });
 }
 
@@ -86,9 +97,16 @@ async function shareCard(data) {
     try {
         if (navigator.share) {
             await navigator.share(shareData);
+        } else if (navigator.clipboard) {
+            // Use modern Clipboard API
+            await navigator.clipboard.writeText(window.location.href);
+            alert('Link copied to clipboard!');
         } else {
+            // Fallback for older browsers
             const textArea = document.createElement('textarea');
             textArea.value = window.location.href;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand('copy');
@@ -97,6 +115,7 @@ async function shareCard(data) {
         }
     } catch (err) {
         console.error('Error sharing: ', err);
+        alert('Could not share or copy link');
     }
 }
 
