@@ -60,15 +60,21 @@ function generateQRCode(data) {
     // Clear any existing QR code
     qrContainer.innerHTML = '';
     
-    // Create QR code using qrcode.js library
-    new QRCode(qrContainer, {
-        text: vCardData,
-        width: 200,
-        height: 200,
-        colorDark: '#2c2b3e',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.M
-    });
+    try {
+        // Create QR code using qrcode.js library
+        new QRCode(qrContainer, {
+            text: vCardData,
+            width: 200,
+            height: 200,
+            colorDark: '#2c2b3e',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    } catch (error) {
+        console.error('Error generating QR code:', error);
+        // Fallback: show the vCard data as text
+        qrContainer.innerHTML = '<p style="color: #666; text-align: center;">QR Code generation failed</p>';
+    }
 }
 
 function generateVCard(data) {
