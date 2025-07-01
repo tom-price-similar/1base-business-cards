@@ -1,11 +1,23 @@
 {
-    "name": "Digital Business Card",
-    "short_name": "Business Card",
-    "description": "A digital business card for professional networking",
-    "start_url": "create.html",
+    "name": "1base Digital Business Cards",
+    "short_name": "1base Cards",
+    "description": "Digital business cards for 1base team members",
+    "start_url": "yamen.html",
     "display": "standalone",
-    "background_color": "#2c2b3e",
+    "background_color": "#1B0E2E",
     "theme_color": "#2c2b3e",
     "orientation": "portrait-primary",
-    "icons": []
+    "icons": [
+        {
+            "src": "images/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/favicon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ]
 }
