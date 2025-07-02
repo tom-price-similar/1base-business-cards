@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2c2b3e">
+    <title>1Base - Dougie Douglas</title>
+       <style>
+@font-face {
+    font-family: 'Coolvetica';
+    src: url('https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Ffonts%2FCoolvetica-Regular.woff2?alt=media&token=cd65597d-31b2-41b5-afff-858fc6e5b75f') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helixa';
+    src: url('https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Ffonts%2FHelixa-Regular.woff2?alt=media&token=e61de9de-6e41-4587-973d-aa6aaf6d1dbf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Coolvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #1B0E2E;
+    min-height: 100vh;
+    min-height: 100svh; /* Use small viewport height for mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden; /* Prevent body scroll */
+}
+
+.dark-theme {
+    background-color: #1B0E2E;
+    min-height: 100vh;
+}
+
+.card-container {
+    width: 100%;
+    max-width: min(95vw, 95vh * 0.6, 400px);
+    height: auto;
+    max-height: 95vh;
+    max-height: 95svh; /* Use small viewport height for mobile */
+}
+
+.card-container.dark-theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 30px;
+}
+
+.business-card {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fbg.svg?alt=media&token=c7514381-8d3a-41ca-a691-a58034749e47');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 32px;
+    padding: 20px;
+    color: white;
+    width: 100%;
+    height: auto;
+    max-height: 95vh;
+    max-height: 95svh; /* Use small viewport height for mobile */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header {
+    margin-bottom: 30px;
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.company-logo-text {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0; /* Allow shrinking */
+}
+
+.card-content h2 {
+    font-size: clamp(1.2em, 4vw, 1.6em);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 60px;
+    color: #e5e5e5;
+}
+
+.contact-details {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.contact-section {
+    margin-bottom: 15px;
+}
+
+.contact-section label {
+    font-family: 'Helixa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #8b8b9a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-value {
+    font-family: 'Helixa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(16px, 4vw, 18px);
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.contact-value:hover {
+    color: #8b5cf6;
+    transition: color 0.3s ease;
+}
+
+.qr-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.qr-code-container {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.qr-code-container canvas {
+    min-width: 150px;
+    max-width: 200px;
+    height: auto !important;
+    width: auto !important;
+}
+
+.qr-code-container canvas {
+    display: block;
+}
+
+.card-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #3e3d4e;
+    color: white;
+}
+
+.action-btn.primary {
+    background-color: #6366f1;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn.primary:hover {
+    background-color: #5558e3;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #007bff;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.profile h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.profile p {
+    font-size: 14px;
+    color: #777;
+}
+
+.contact-info {
+    margin-bottom: 25px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.contact-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.contact-item a, .contact-item p {
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #007bff;
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#share-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#save-contact-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#share-btn:hover {
+    background-color: #0069d9;
+}
+
+#save-contact-btn:hover {
+    background-color: #e2e2e2;
+}
+
+/* Media query for landscape orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+    .card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .profile {
+        grid-column: 1;
+        grid-row: 1 / 3;
+    }
+    
+    .contact-info {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    .social-links, .actions {
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+/* Form Styles */
+.create-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-card {
+    background-color: white;
+    border-radius: 32px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.form-card h1 {
+    font-size: 28px;
+    color: #2c2b3e;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c2b3e;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.generate-btn:hover {
+    background-color: #5558e3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .business-card {
+        padding: 15px;
+        border-radius: 20px;
+        max-height: 98vh;
+        max-height: 98svh;
+    }
+    
+    .card-header {
+        margin-bottom: 30px;
+    }
+    
+    .logo svg {
+        width: 100px;
+        height: 35px;
+    }
+    
+    .card-content h2 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+        line-height: 1.1;
+    }
+    
+    .contact-section {
+        margin-bottom: 30px;
+    }
+    
+    .contact-section label {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    .contact-value {
+        font-size: clamp(14px, 4vw, 16px);
+    }
+    
+    .qr-code-container {
+        padding: 12px;
+    }
+    
+    .qr-code-container canvas {
+        min-width: 140px;
+        max-width: 180px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .business-card {
+        padding: 12px;
+        max-height: 99vh;
+        max-height: 99svh;
+    }
+    
+    .card-content h2 {
+        font-size: clamp(1em, 4vw, 1.2em);
+    }
+    
+    .contact-value {
+        font-size: clamp(13px, 4vw, 15px);
+    }
+    
+    .qr-code-container canvas {
+        min-width: 120px;
+        max-width: 150px;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+    .business-card {
+        flex-direction: row;
+        gap: 20px;
+        max-height: 95vh;
+        max-height: 95svh;
+    }
+    
+    .card-header {
+        margin-bottom: 0;
+        flex: 0 0 auto;
+    }
+    
+    .card-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        align-items: start;
+    }
+    
+    .qr-section {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        margin-bottom: 0;
+        align-self: center;
+    }
+    
+    .contact-details {
+        grid-column: 1;
+        margin-bottom: 0;
+    }
+}
+    </style>
+    <link rel="manifest" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fmanifest.json?alt=media&token=5fa4bea6-d53b-42ed-8af2-3ed752b80c73">
+    <link rel="icon" type="image/x-icon" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Ffavicon.ico?alt=media&token=89407062-917a-4cd8-946c-76490f3c38ef">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2">
+</head>
+<body>
+    <div class="card-container dark-theme">
+        <div class="business-card">
+            <div class="card-header">
+                <div class="logo">
+                    <svg width="115" height="40" viewBox="0 0 143 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.30443 25.0402C6.2154 25.0633 6.52272 25.1095 9.41933 25.0446C11.4069 24.9998 15.4222 24.4529 18 22.2637C20.5778 20.0745 21.4495 17.637 21.7166 15.0163C21.8215 13.9903 21.8014 13.4967 21.8014 12.6078L34.0987 12.5977V24.9912H29.3926C29.0436 26.0028 28.2078 28.1155 26.9455 29.9642C24.9522 32.8865 20.361 36.806 15.2212 37.1927C10.989 37.5102 7.31257 37.3775 3.30299 37.3601L3.32884 26.1356C3.32884 26.1081 3.32597 25.0157 3.32884 24.9912" fill="#3E26FF"/>
+                        <path d="M46.4361 24.9911L34.0987 24.9912L34.0986 37.3847H46.4361V24.9911Z" fill="#3E26FF"/>
+                        <path d="M71.8009 37.4068V12.5H76.405V21.5414C77.7381 19.615 79.4651 18.6888 81.6578 18.6888C86.2261 18.6888 88.9281 22.5824 88.9281 28.1031C88.9281 34.255 85.7247 37.8863 81.2638 37.8863C79.103 37.8863 77.4476 37.0338 76.3334 35.1813L76.2976 37.4068H71.8009ZM84.1807 28.4351C84.1807 24.6931 82.8834 22.8037 80.1496 22.8037C77.559 22.8037 76.2259 24.7669 76.2259 28.7343C76.2259 31.8082 77.953 33.9599 80.1854 33.9599C82.4178 33.9599 84.1807 31.6975 84.1807 28.4392V28.4351Z" fill="#F3F3F3"/>
+                        <path d="M102.371 37.407C102.228 36.9644 102.121 36.3332 102.085 35.7758C100.971 37.034 99.1002 37.8865 96.7245 37.8865C92.6934 37.8865 90.8231 35.8496 90.8231 32.8822C90.8231 27.6197 94.2414 27.0254 98.9569 26.3615C101.297 26.0295 101.945 25.5459 101.945 24.2876C101.945 23.1031 100.795 22.3982 98.9569 22.3982C96.8359 22.3982 95.9724 23.472 95.7535 25.1032H91.4001C91.4717 21.3244 93.4853 18.6931 99.1718 18.6931C104.858 18.6931 106.729 21.2875 106.729 25.8819V37.407H102.371ZM102.049 28.4722C101.579 28.9558 100.752 29.214 99.0246 29.546C96.3624 30.0665 95.4988 30.8412 95.4988 32.3986C95.4988 33.7716 96.2908 34.4356 97.7671 34.4356C100.179 34.4356 101.977 32.6199 102.013 30.4682L102.049 28.4681V28.4722Z" fill="#F3F3F3"/>
+                        <path d="M119.804 24.6934C119.554 22.9146 118.619 22.2834 116.494 22.2834C114.731 22.2834 113.724 22.7261 113.724 23.804C113.724 24.8819 114.695 25.3245 116.601 25.8778C118.615 26.4721 120.525 26.8779 121.89 27.4353C123.76 28.214 124.803 29.4722 124.803 31.8453C124.803 35.6241 122.104 37.8865 117.067 37.8865C111.635 37.8865 108.61 35.2553 108.539 31.5502H113.362C113.362 33.2552 114.767 34.2552 117.031 34.2552C118.686 34.2552 120.163 33.7347 120.163 32.3658C120.163 31.0707 118.829 30.6608 117.321 30.292C114.333 29.5501 112.681 29.0337 111.42 28.2181C109.764 27.1443 109.187 25.7344 109.187 24.1032C109.187 21.0252 111.237 18.6931 116.637 18.6931C121.746 18.6931 124.05 20.767 124.301 24.6975H119.804V24.6934Z" fill="#F3F3F3"/>
+                        <path d="M130.799 29.5501C130.943 32.292 132.455 34.0708 134.759 34.0708C136.271 34.0708 137.6 33.2921 137.926 32.0338H142.749C141.671 35.7758 138.754 37.8906 134.978 37.8906C129.076 37.8906 126.123 34.5544 126.123 27.9599C126.123 22.3244 129.255 18.6931 134.687 18.6931C140.119 18.6931 143 22.3244 143 29.5542H130.799V29.5501ZM138.177 26.509C138.105 23.804 136.378 22.5047 134.544 22.5047C132.709 22.5047 131.126 23.9884 130.946 26.509H138.181H138.177Z" fill="#F3F3F3"/>
+                        <path d="M68.3063 18.7689H63.9984V37.4938H68.3063V18.7689Z" fill="#F3F3F3"/>
+                        <path d="M57.5114 23.118C58.5231 23.1263 58.6299 23.1427 59.6366 23.1196C60.3273 23.1036 61.7229 22.9088 62.6188 22.129C63.5147 21.3492 63.8176 20.4809 63.9105 19.5474C63.9469 19.1819 63.9399 19.0061 63.9399 18.6894L68.2138 18.6858V23.1006H66.5782C66.4569 23.4609 66.1665 24.2135 65.7277 24.872C65.035 25.913 63.4393 27.3091 61.653 27.4469C60.1821 27.56 58.9044 27.5127 57.5109 27.5065L57.5198 23.5082C57.5198 23.4984 57.5189 23.1093 57.5198 23.1006" fill="#F3F3F3"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="card-content">
+                
+                <h2 id="company-description">An all-in-one plaform for CRM, auomaion, finance, and IT suppor. </h2>
+                
+                <div class="contact-details">
+                     <div class="contact-section">
+                        <label>WEBSITE</label>
+                        <a href="https://1base.io" target="_blank" class="contact-value">1base.io</a>
+                    </div>
+                    
+                    
+                    <div class="contact-section">
+                        <label>EMAIL</label>
+                        <a href="mailto:dougie@1base.io" id="email-link" class="contact-value">dougie@1base.io</a>
+                    </div>
+                    
+                   
+                </div>
+                
+                <div class="qr-section">
+                    <div id="qr-code" class="qr-code-container"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Generate QR code with contact info
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrContainer = document.getElementById('qr-code');
+            if (qrContainer) {
+                // Clear any existing content
+                qrContainer.innerHTML = '';
+                
+                const qrData = `BEGIN:VCARD
+VERSION:3.0
+FN:Dougie Douglas
+N:Douglas;Dougie;;;
+ORG:1base
+TITLE:Project Lead 
+TEL;TYPE=WORK,VOICE:+9710549982824
+EMAIL;TYPE=WORK:dougie@1base.io
+URL:https://1base.io
+END:VCARD`;
+                
+                try {
+                    // Calculate QR code size based on screen width - minimum 150px for scannability
+                    const isMobile = window.innerWidth <= 480;
+                    const qrSize = isMobile ? Math.max(150, Math.min(180, window.innerWidth * 0.35)) : 200;
+                    
+                    new QRCode(qrContainer, {
+                        text: qrData,
+                        width: qrSize,
+                        height: qrSize,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                } catch (error) {
+                    console.error('Error generating QR code:', error);
+                    qrContainer.innerHTML = '<p style="color: #666; text-align: center;">QR Code generation failed</p>';
+                }
+            }
+        });
+        
+        // PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed: ', err));
+            });
+        }
+    </script>
+</body>
+</html>

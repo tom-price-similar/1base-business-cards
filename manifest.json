@@ -2,14 +2,14 @@
     "name": "1base Digital Business Cards",
     "short_name": "1base Cards",
     "description": "Digital business cards for 1base team members",
-    "start_url": "yamen.html",
+    "start_url": "card.html",
     "display": "standalone",
     "background_color": "#1B0E2E",
     "theme_color": "#2c2b3e",
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "images/apple-touch-icon.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2",
             "sizes": "180x180",
             "type": "image/png",
             "purpose": "any maskable"

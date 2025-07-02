@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2c2b3e">
-    <title>Yamen's Digital Business Card</title>
-    <style>
+    <title>1Base - Umer Safdar</title>
+       <style>
 @font-face {
     font-family: 'Coolvetica';
-    src: url('../fonts/Coolvetica-Regular.woff2') format('woff2');
+    src: url('https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Ffonts%2FCoolvetica-Regular.woff2?alt=media&token=cd65597d-31b2-41b5-afff-858fc6e5b75f') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Helixa';
-    src: url('../fonts/Helixa-Regular.woff2') format('woff2');
+    src: url('https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Ffonts%2FHelixa-Regular.woff2?alt=media&token=e61de9de-6e41-4587-973d-aa6aaf6d1dbf') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -30,9 +30,12 @@
 body {
     background-color: #1B0E2E;
     min-height: 100vh;
+    min-height: 100svh; /* Use small viewport height for mobile */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    overflow: hidden; /* Prevent body scroll */
 }
 
 .dark-theme {
@@ -41,8 +44,11 @@ body {
 }
 
 .card-container {
-    width: 95%;
-    max-width: 500px;
+    width: 100%;
+    max-width: min(95vw, 95vh * 0.6, 400px);
+    height: auto;
+    max-height: 95vh;
+    max-height: 95svh; /* Use small viewport height for mobile */
 }
 
 .card-container.dark-theme {
@@ -60,7 +66,7 @@ body {
 }
 
 .business-card {
-    background-image: url('images/bg.svg');
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fbg.svg?alt=media&token=c7514381-8d3a-41ca-a691-a58034749e47');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -68,14 +74,20 @@ body {
     padding: 20px;
     color: white;
     width: 100%;
-    max-width: 400px;
+    height: auto;
+    max-height: 95vh;
+    max-height: 95svh; /* Use small viewport height for mobile */
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-header {
     margin-bottom: 30px;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -90,20 +102,29 @@ body {
     color: white;
 }
 
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0; /* Allow shrinking */
+}
+
 .card-content h2 {
-    font-size: 1.6em;
+    font-size: clamp(1.2em, 4vw, 1.6em);
     font-weight: 400;
     line-height: 1.2;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
     color: #e5e5e5;
 }
 
 .contact-details {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    flex: 1;
 }
 
 .contact-section {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .contact-section label {
@@ -118,7 +139,7 @@ body {
 
 .contact-value {
     font-family: 'Helixa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: clamp(16px, 4vw, 18px);
     color: white;
     text-decoration: none;
     display: block;
@@ -132,14 +153,22 @@ body {
 .qr-section {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
 }
 
 .qr-code-container {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
     display: inline-block;
+}
+
+.qr-code-container canvas {
+    min-width: 150px;
+    max-width: 200px;
+    height: auto !important;
+    width: auto !important;
 }
 
 .qr-code-container canvas {
@@ -398,35 +427,119 @@ button {
     box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
 }
 
-/* Mobile improvements */
-@media (max-width: 380px) {
-    .card {
-        padding: 20px;
-    }
-    
-    .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .actions {
-        flex-direction: column;
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
     }
     
     .business-card {
-        padding: 30px 20px;
+        padding: 15px;
+        border-radius: 20px;
+        max-height: 98vh;
+        max-height: 98svh;
     }
     
-    .form-card {
-        padding: 30px 20px;
+    .card-header {
+        margin-bottom: 30px;
+    }
+    
+    .logo svg {
+        width: 100px;
+        height: 35px;
+    }
+    
+    .card-content h2 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+        line-height: 1.1;
+    }
+    
+    .contact-section {
+        margin-bottom: 30px;
+    }
+    
+    .contact-section label {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    .contact-value {
+        font-size: clamp(14px, 4vw, 16px);
+    }
+    
+    .qr-code-container {
+        padding: 12px;
+    }
+    
+    .qr-code-container canvas {
+        min-width: 140px;
+        max-width: 180px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .business-card {
+        padding: 12px;
+        max-height: 99vh;
+        max-height: 99svh;
+    }
+    
+    .card-content h2 {
+        font-size: clamp(1em, 4vw, 1.2em);
+    }
+    
+    .contact-value {
+        font-size: clamp(13px, 4vw, 15px);
+    }
+    
+    .qr-code-container canvas {
+        min-width: 120px;
+        max-width: 150px;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+    .business-card {
+        flex-direction: row;
+        gap: 20px;
+        max-height: 95vh;
+        max-height: 95svh;
+    }
+    
+    .card-header {
+        margin-bottom: 0;
+        flex: 0 0 auto;
+    }
+    
+    .card-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        align-items: start;
+    }
+    
+    .qr-section {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        margin-bottom: 0;
+        align-self: center;
+    }
+    
+    .contact-details {
+        grid-column: 1;
+        margin-bottom: 0;
     }
 }
     </style>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../images/apple-touch-icon.png">
+    <link rel="manifest" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fmanifest.json?alt=media&token=5fa4bea6-d53b-42ed-8af2-3ed752b80c73">
+    <link rel="icon" type="image/x-icon" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Ffavicon.ico?alt=media&token=89407062-917a-4cd8-946c-76490f3c38ef">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://firebasestorage.googleapis.com/v0/b/onebase-f1c95.firebasestorage.app/o/onebase_business_cards%2Fimages%2Fapple-touch-icon.png?alt=media&token=01b309e3-14b3-4b04-9017-5e8c35a91eb2">
 </head>
 <body>
     <div class="card-container dark-theme">
@@ -459,7 +572,7 @@ button {
                     
                     <div class="contact-section">
                         <label>EMAIL</label>
-                        <a href="mailto:yamen@1base.io" id="email-link" class="contact-value">yamen@1base.io</a>
+                        <a href="mailto:umer@1base.io" id="email-link" class="contact-value">umer@1base.io</a>
                     </div>
                     
                    
@@ -484,20 +597,24 @@ button {
                 
                 const qrData = `BEGIN:VCARD
 VERSION:3.0
-FN:Yamen Albadin
-N:Albadin;Yamen;;;
+FN:Umer Safdar
+N:Safdar;Umer;;;
 ORG:1base
-TITLE:Lead Dev
-TEL;TYPE=WORK,VOICE:+15551234567
-EMAIL;TYPE=WORK:yamen@1base.io
+TITLE:Technical Lead 
+TEL;TYPE=WORK,VOICE:+9710507149912
+EMAIL;TYPE=WORK:umer@1base.io
 URL:https://1base.io
 END:VCARD`;
                 
                 try {
+                    // Calculate QR code size based on screen width - minimum 150px for scannability
+                    const isMobile = window.innerWidth <= 480;
+                    const qrSize = isMobile ? Math.max(150, Math.min(180, window.innerWidth * 0.35)) : 200;
+                    
                     new QRCode(qrContainer, {
                         text: qrData,
-                        width: 200,
-                        height: 200,
+                        width: qrSize,
+                        height: qrSize,
                         colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.M
