@@ -1,8 +1,8 @@
 {
-    "name": "1Base Digital Business Cards",
-    "short_name": "1Base Business Card",
-    "description": "Digital business cards for 1base team members",
-    "start_url": "umer.html",
+    "name": "1Base - Max Thompson",
+    "short_name": "Max - 1Base",
+    "description": "Digital business card for Max Thompson at 1base",
+    "start_url": "max.html",
     "display": "standalone",
     "background_color": "#1B0E2E",
     "theme_color": "#2c2b3e",

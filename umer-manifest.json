@@ -1,7 +1,7 @@
 {
-    "name": "1Base Digital Business Cards",
-    "short_name": "1Base Business Card",
-    "description": "Digital business cards for 1base team members",
+    "name": "1Base - Umer Safdar",
+    "short_name": "Umer - 1Base",
+    "description": "Digital business card for Umer Safdar at 1base",
     "start_url": "umer.html",
     "display": "standalone",
     "background_color": "#1B0E2E",
