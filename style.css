@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Coolvetica';
-    src: url('https://similiar.dev/1Base/fonts/Coolvetica-Regular.woff2') format('woff2');
+    src: url('fonts/Coolvetica-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Helixa';
-    src: url('https://similiar.dev/1Base/fonts/Helixa-Regular.woff2') format('woff2');
+    src: url('fonts/Helixa-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -58,7 +58,7 @@ body {
 }
 
 .business-card {
-    background-image: url('https://similiar.dev/1Base/images/bg.svg');
+    background-image: url('images/bg.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

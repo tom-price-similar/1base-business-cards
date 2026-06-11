@@ -1,23 +1,20 @@
-const CACHE_NAME = 'business-card-v2';
+const CACHE_NAME = 'business-card-v3';
 const urlsToCache = [
-    './',
-    './index.html',
-    './create.html',
-    './card.html',
-    './styles/styles.css',
-    './scripts/app.js',
-    './scripts/create.js',
-    './scripts/card.js',
-    './scripts/libs/qrcode.min.js',
-    './manifest.json',
-    './images/card.png',
-    './images/icons/phone.svg',
-    './images/icons/email.svg',
-    './images/icons/website.svg',
-    './images/icons/location.svg',
-    './images/icons/linkedin.svg',
-    './images/icons/twitter.svg',
-    './images/icons/github.svg'
+    './dougie.html',
+    './max.html',
+    './sai.html',
+    './umer.html',
+    './style.css',
+    './dougie-manifest.json',
+    './max-manifest.json',
+    './sai-manifest.json',
+    './umer-manifest.json',
+    './images/favicon.ico',
+    './images/apple-touch-icon.png',
+    './images/favicon-96x96.png',
+    './images/bg.svg',
+    './images/icon.svg',
+    './images/logo.svg'
 ];
 
 // Install service worker and cache static assets
