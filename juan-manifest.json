@@ -1,0 +1,23 @@
+{
+    "name": "1Base - Juan Carlos Peña",
+    "short_name": "Juan - 1Base",
+    "description": "Digital business card for Juan Carlos Peña at 1base",
+    "start_url": "juan.html",
+    "display": "standalone",
+    "background_color": "#1B0E2E",
+    "theme_color": "#2c2b3e",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "images/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/favicon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ]
+}

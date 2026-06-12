@@ -167,6 +167,11 @@ body {
     display: block;
 }
 
+.qr-code-container img {
+    display: block;
+    image-rendering: pixelated;
+}
+
 .card-actions {
     display: flex;
     gap: 15px;

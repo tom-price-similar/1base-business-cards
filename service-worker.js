@@ -1,14 +1,19 @@
-const CACHE_NAME = 'business-card-v3';
+const CACHE_NAME = 'business-card-v5';
 const urlsToCache = [
+    './qrcode.min.js',
     './dougie.html',
+    './juan.html',
     './max.html',
     './sai.html',
     './umer.html',
     './style.css',
     './dougie-manifest.json',
+    './juan-manifest.json',
     './max-manifest.json',
     './sai-manifest.json',
     './umer-manifest.json',
+    './fonts/Coolvetica-Regular.woff2',
+    './fonts/Helixa-Regular.woff2',
     './images/favicon.ico',
     './images/apple-touch-icon.png',
     './images/favicon-96x96.png',
